@@ -1,0 +1,73 @@
+node app with help of docker and nginx===============================
+
+1. sudo apt-get update
+2. sudo apt install nginx
+3. systemctl status nginx
+systemctl restart nginx 
+(if asked for password do sudo systemctl restart nginx)
+
+
+
+nginx config file=============
+1. cd /etc/config
+
+2. ls
+defualt
+
+3.
+======================================================
+1. git clone https://github.com/rajani103/django-notes-app.git
+2. sudo apt install docker.io
+================================================================
+
+Permission denied because this user doesn’t have access to docker . So we will give this user permission. Use command:
+
+1.sudo usermod -aG docker $USER
+
+2.$USER == current logged in user
+
+===============================================================
+creating docker image----------
+
+
+ls
+cd django app
+1. docker build -t notes-app .
+2. docker run -d -p 8000:8000 notes-app:latest
+
+3. This application is now running on the local host and we can check it using the command:
+
+curl -L <local_url>:<External-Ip>
+curl -L http://127.0.0.1:8000
+
+
+=============================================
+
+For this we need to change the configuration of Nginx so for that go to 
+1. /etc/nginx/sites-enabled
+
+maintain the ip in this folder
+
+2. sudo service nginx restart
+
+============================================
+
+sudo cp -r * /var/www/html/
+Go to /etc/nginx/sites-enabled location and update the code.
+
+in this file we have to add proxt adress
+
+1. proxy_pass http://(public ip):8000
+========================================
+restart nginx
+
+
+sudo service nginx restart
+
+
+
+
+
+
+ 
+
